@@ -12,16 +12,13 @@ You can click the Preview link to take a look at your changes.
 --->
 
 aurthlobo:snake_size5
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="aurthlobo:snake_size5
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/HollieRose89/HollieRose89/output-arthur-snakeSize5/github-contribution-grid-snake-dark_v008.svg" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/HollieRose89/HollieRose89/output/github-contribution-grid-snake.sv" />
   <img alt="github-snake" src="https://raw.githubusercontent.com/HollieRose89/HollieRose89/output/github-contribution-grid-snake.sv" />
-</picture>" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/HollieRose89/HollieRose89/output/github-contribution-grid-snake.sv" />
-  <img alt="github-snake" src="https://raw.githubusercontent.com/HollieRose89/HollieRose89/output/github-contribution-grid-snake.sv" />
 </picture>
+
 
 Hollie:snake_size5
 <picture>

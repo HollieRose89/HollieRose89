@@ -26,17 +26,6 @@ jobs:
       SNAKE_SPEED: 'null'
       DOT_COLOR:   'null' 
       DOT_SHAPE:   'null'
-      
-    env: 
-
-
-      
-      SNAKE_COLOR: ${{ steps.set_snake_color.outputs.color }}
-      SNAKE_SIZE: ${{ steps.set_snake_size.outputs.size }}
-      SNAKE_SPEED: ${{ steps.set_snake_speed.outputs.speed }}
-      DOT_COLOR: ${{ steps.set_dots_color.outputs.color }}
-      DOT_SHAPE: ${{ steps.set_dot_shape.outputs.shape }}
-      
     
     steps:
       - name: Set snake color

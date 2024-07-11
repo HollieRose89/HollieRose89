@@ -31,7 +31,7 @@ jobs:
         
       - name: Set dots color
         id: set_dots_color
-        run: echo "::set-output name=dots_color::$(shuf -n 1 -e '#161b22,#8dbdff,#64a1f4,#4b91f1,#3c7dd9' '#161b22,#0e4429,#006d32,#26a641,#39d353' '#161b22,b3e5fc,4fc3f7,039be5,01579b' '#161b22,f8bbd0,f06292,e91d63,890d4f' '#161b22,6dc5fb,f6f68c,8affa4,f283d1' )"
+        run: echo "::set-output name=dots_color::$(shuf -n 1 -e '#161b22,631c03,bd561c,fa7a17,fddf67' '#161b22,#0e4429,#006d32,#26a641,#39d353' '#161b22,b3e5fc,4fc3f7,039be5,01579b' '#161b22,f8bbd0,f06292,e91d63,890d4f' '#161b22,6dc5fb,f6f68c,8affa4,f283d1' )"
 
       - name: Set snake size
         id: set_snake_size

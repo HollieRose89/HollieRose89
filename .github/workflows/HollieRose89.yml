@@ -55,7 +55,7 @@ jobs:
       - name: generate github-contribution-grid-snake.svg
         uses: Hollierose89/snk@main
         with:
-          github_user_name: ${{ github.repository_owner }}
+          github_user_name: PaddyZz
           
           
           outputs: dist/github-contribution-grid-snake-dark-arthur_V0.0.1.svg?palette=github-dark&snake_size=4&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9&speed=${{ steps.set_snake_speed.outputs.speed }}&dot_shape=${{ steps.set_dots_shape.outputs.shape }}&color_snake=${{ steps.set_snake_color.outputs.color }}&hide_stack=true

@@ -21,15 +21,36 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 999
+
+    env:
+      SNAKE_COLOR: ${{ steps.set_snake_color.outputs.color }}
+      SNAKE_SIZE: ${{ steps.set_snake_size.outputs.size }}
+      SNAKE_SPEED: ${{ steps.set_snake_speed.outputs.speed }}
+      DOT_COLOR: ${{ steps.set_dots_color.outputs.color }}
+      DOT_SHAPE: ${{ steps.set_dot_shape.outputs.shape }}
+      
     
     steps:
       - name: Set snake color
         id: set_snake_color
-        run: echo "::set-output name=color::$(shuf -n 1 -e 'red' 'blue' 'green')"
+        run: echo "::set-output name=color::$(shuf -n 1 -e 'purple' '#00e6de')"
 
       - name: Set snake speed
         id: set_snake_speed
-        run: echo "::set-output name=speed::$(shuf -n 1 -e 'fast' 'slow' 'auto' 'normal')"
+        run: echo "::set-output name=speed::$(shuf -n 1 -e 'fast' 'slow' 'normal')"
+        
+      - name: Set dots color
+        id: set_dots_color
+        run: echo "::set-output name=color::$(shuf -n 1 -e '#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9' '#161b22,#0e4429,#006d32,#26a641,#39d353' 'bfd6f6,b3e5fc,4fc3f7,039be5,01579b' 'bfd6f6,f8bbd0,f06292,e91d63,890d4f' 'bfd6f6,6dc5fb,f6f68c,8affa4,f283d1' )"
+
+      - name: Set snake size
+        id: set_snake_size
+        run: echo "::set-output name=size::$(shuf -n 1 -e '1' '2' '3' '4' '5' '6' '7')"
+        
+      - name: Set dots shape  
+        id: set_dots_shape
+        run: echo "::set-output name=shape::$(shuf -n 1 -e 'square' 'square-rounded' 'circle')"
+        
       # generates a snake game from a github user (<github_user_name>) contributions graph, output a svg animation at <svg_out_path>
       - name: generate github-contribution-grid-snake.svg
         uses: Hollierose89/snk@main
@@ -37,7 +58,7 @@ jobs:
           github_user_name: ${{ github.repository_owner }}
           
           
-          outputs: dist/github-contribution-grid-snake-dark-arthur_V0.0.1.svg?palette=github-dark&snake_size=7
+          outputs: dist/github-contribution-grid-snake-dark-arthur_V0.0.1.svg?palette=github-dark&snake_size=4&color_dots=${{ env.DOT_COLOR }}&speed=${{ env.SNAKE_SPEED }}&dot_shape=${{ env.DOT_SHAPE }}&color_snake=${{ env.SNAKE_COLOR }}&hide_stack=true
       # push the content of <build_dir> to a branch
       # the content will be available at https://raw.githubusercontent.com/<github_user>/<repository>/<target_branch>/<file> , or as github page
       - name: push github-contribution-grid-snake.svg to the output branch

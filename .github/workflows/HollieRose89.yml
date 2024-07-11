@@ -58,7 +58,7 @@ jobs:
           github_user_name: nuhkoca
           
           
-          outputs: dist/github-contribution-grid-snake-dark-arthur_V0.0.1.svg?palette=github-dark&snake_size=4&color_dots=#161b22,#8dbdff,#64a1f4,#4b91f1,#3c7dd9&speed=${{ steps.set_snake_speed.outputs.speed }}&dot_shape=${{ steps.set_dots_shape.outputs.shape }}&color_snake=purple&hide_stack=true
+          outputs: dist/github-contribution-grid-snake-dark-arthur_V0.0.1.svg?palette=github-dark&snake_size=4&color_dots=#161b22,f8bbd0,f06292,e91d63,890d4f&speed=${{ steps.set_snake_speed.outputs.speed }}&dot_shape=${{ steps.set_dots_shape.outputs.shape }}&color_snake=purple&hide_stack=true
       # push the content of <build_dir> to a branch
       # the content will be available at https://raw.githubusercontent.com/<github_user>/<repository>/<target_branch>/<file> , or as github page
       - name: push github-contribution-grid-snake.svg to the output branch

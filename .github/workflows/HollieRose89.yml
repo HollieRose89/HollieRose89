@@ -54,7 +54,7 @@ jobs:
           echo "SNAKE_SIZE is ${{ steps.set_snake_size.outputs.size }}"
           echo "SNAKE_SPEED is ${{ steps.set_snake_speed.outputs.speed }}"
           echo "DOT_COLOR is ${{ steps.set_dots_color.outputs.color }}"
-          echo "DOT_SHAPE is ${{ steps.set_dots_shape.outputs.shaper }}"
+          echo "DOT_SHAPE is ${{ steps.set_dots_shape.outputs.shape }}"
         env:
           SNAKE_COLOR: ${{ steps.set_snake_color.outputs.color }}
           SNAKE_SIZE: ${{ steps.set_snake_size.outputs.size }}

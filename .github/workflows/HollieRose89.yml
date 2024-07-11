@@ -21,11 +21,11 @@ jobs:
 
 
     env:
-      SNAKE_COLOR: 'null'
-      SNAKE_SIZE:  'null'
-      SNAKE_SPEED: 'null'
+      SNAKE_COLOR: 'red'
+      SNAKE_SIZE:  '1'
+      SNAKE_SPEED: 'fast'
       DOT_COLOR:   'null' 
-      DOT_SHAPE:   'null'
+      DOT_SHAPE:   'square'
     
     steps:
       - name: Set snake color

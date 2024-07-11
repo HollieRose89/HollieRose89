@@ -19,8 +19,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 999
 
+
+    env:
+      SNAKE_COLOR: 'null'
+      SNAKE_SIZE:  'null'
+      SNAKE_SPEED: 'null'
+      DOT_COLOR:   'null' 
+      DOT_SHAPE:   'null'
+      
     env: 
-    
+
+
+      
       SNAKE_COLOR: ${{ steps.set_snake_color.outputs.color }}
       SNAKE_SIZE: ${{ steps.set_snake_size.outputs.size }}
       SNAKE_SPEED: ${{ steps.set_snake_speed.outputs.speed }}
@@ -48,6 +58,21 @@ jobs:
       - name: Set dots shape  
         id: set_dots_shape
         run: echo "::set-output name=shape::$(shuf -n 1 -e 'square' 'square-rounded' 'circle')"
+
+      - name: Use outputs from previous steps
+        run: |
+          echo "SNAKE_COLOR is ${{ steps.set_snake_color.outputs.color }}"
+          echo "SNAKE_SIZE is ${{ steps.set_snake_size.outputs.size }}"
+          echo "SNAKE_SPEED is ${{ steps.set_snake_speed.outputs.speed }}"
+          echo "DOT_COLOR is ${{ steps.set_dots_color.outputs.color }}"
+          echo "DOT_SHAPE is ${{ steps.set_dots_shape.outputs.shaper }}"
+        env:
+          SNAKE_COLOR: ${{ steps.set_snake_color.outputs.color }}
+          SNAKE_SIZE: ${{ steps.set_snake_size.outputs.size }}
+          SNAKE_SPEED: ${{ steps.set_snake_speed.outputs.speed }}
+          DOT_COLOR: ${{ steps.set_dots_color.outputs.color }}
+          DOT_SHAPE:  ${{ steps.set_dots_shape.outputs.shape }}
+
         
       # generates a snake game from a github user (<github_user_name>) contributions graph, output a svg animation at <svg_out_path>
       - name: generate github-contribution-grid-snake.svg

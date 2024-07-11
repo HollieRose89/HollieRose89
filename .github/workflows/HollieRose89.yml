@@ -19,33 +19,36 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 999
 
-
-    env:
-      SNAKE_COLOR: 'red'
-      SNAKE_SIZE:  '1'
-      SNAKE_SPEED: 'fast'
-      DOT_COLOR:   'bfd6f6,b3e5fc,4fc3f7,039be5,01579b' 
-      DOT_SHAPE:   'square'
     
     steps:
-      - name: Generate random values
-        id: generate_values
-        run: |
-          snake_color=$(shuf -n 1 -e 'purple' '#00e6de')
-          snake_size=$(shuf -n 1 -e '1' '2' '3' '4' '5' '6' '7')
-          snake_speed=$(shuf -n 1 -e 'fast' 'slow' 'normal')
-          dot_color=$(shuf -n 1 -e '#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9' '#161b22,#0e4429,#006d32,#26a641,#39d353' 'bfd6f6,b3e5fc,4fc3f7,039be5,01579b' 'bfd6f6,f8bbd0,f06292,e91d63,890d4f' 'bfd6f6,6dc5fb,f6f68c,8affa4,f283d1')
-          dot_shape=$(shuf -n 1 -e 'square' 'square-rounded' 'circle')
+      - name: Set snake color
+        id: set_snake_color
+        run: echo "::set-output name=color::$(shuf -n 1 -e 'purple' '#00e6de')"
 
-      - name: Set environment variables
-        id: set_env_vars
-        run: |
-          env SNAKE_COLOR=$snake_color
-          env SNAKE_SIZE=$snake_size
-          env SNAKE_SPEED=$snake_speed
-          env DOT_COLOR=$dot_color
-          env DOT_SHAPE=$dot_shape
+      - name: Set snake speed
+        id: set_snake_speed
+        run: echo "::set-output name=speed::$(shuf -n 1 -e 'fast' 'slow' 'normal')"
+        
+      - name: Set dots color
+        id: set_dots_color
+        run: echo "::set-output name=color::$(shuf -n 1 -e '#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9' '#161b22,#0e4429,#006d32,#26a641,#39d353' 'bfd6f6,b3e5fc,4fc3f7,039be5,01579b' 'bfd6f6,f8bbd0,f06292,e91d63,890d4f' 'bfd6f6,6dc5fb,f6f68c,8affa4,f283d1' )"
 
+      - name: Set snake size
+        id: set_snake_size
+        run: echo "::set-output name=size::$(shuf -n 1 -e '1' '2' '3' '4' '5' '6' '7')"
+        
+      - name: Set dots shape  
+        id: set_dots_shape
+        run: echo "::set-output name=shape::$(shuf -n 1 -e 'square' 'square-rounded' 'circle')"
+
+      - name: Use outputs from previous steps
+        run: |
+          echo "SNAKE_COLOR is ${{ steps.set_snake_color.outputs.color }}"
+          echo "SNAKE_SIZE is ${{ steps.set_snake_size.outputs.size }}"
+          echo "SNAKE_SPEED is ${{ steps.set_snake_speed.outputs.speed }}"
+          echo "DOT_COLOR is ${{ steps.set_dots_color.outputs.color }}"
+          echo "DOT_SHAPE is ${{ steps.set_dots_shape.outputs.shape }}"
+     
 
         
       # generates a snake game from a github user (<github_user_name>) contributions graph, output a svg animation at <svg_out_path>
@@ -55,7 +58,7 @@ jobs:
           github_user_name: ${{ github.repository_owner }}
           
           
-          outputs: dist/github-contribution-grid-snake-dark-arthur_V0.0.1.svg?palette=github-dark&snake_size=4&color_dots=${{ env.DOT_COLOR }}&speed=${{ env.SNAKE_SPEED }}&dot_shape=${{ env.DOT_SHAPE }}&color_snake=${{ env.SNAKE_COLOR }}&hide_stack=true
+          outputs: dist/github-contribution-grid-snake-dark-arthur_V0.0.1.svg?palette=github-dark&snake_size=4&color_dots=${{ steps.set_dots_color.outputs.color }}&speed=${{ steps.set_snake_speed.outputs.speed }}&dot_shape=${{ steps.set_dots_shape.outputs.shape }}&color_snake=${{ steps.set_snake_color.outputs.color }}&hide_stack=true
       # push the content of <build_dir> to a branch
       # the content will be available at https://raw.githubusercontent.com/<github_user>/<repository>/<target_branch>/<file> , or as github page
       - name: push github-contribution-grid-snake.svg to the output branch
